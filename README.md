@@ -53,3 +53,41 @@ For a more realistic local server, use Visual Studio Code with the Live Server e
 2. Add question banks or let faculty load quizzes from a file.
 3. Add a backend/database (for example Supabase or Firebase) when shared student progress, authentication, or a leaderboard is needed.
 4. Keep secret API keys on a server-side function, never in browser JavaScript.
+
+# AI Learning Studio — Version 2
+
+A modular, static teaching application for an introductory AI course.
+
+## Files
+- `index.html` — app shell and navigation areas
+- `styles.css` — responsive layout, cards, animation and accessibility styles
+- `js/data.js` — module and lesson content
+- `js/labs.js` — reusable virtual-lab examples and workflow steps
+- `js/quizzes.js` — question bank, answer keys and explanations
+- `js/app.js` — navigation, rendering, progress, lab and quiz behaviour
+
+## Run locally
+Open `index.html` in a modern browser. No build step or package installation is required. If your browser restricts local files, use VS Code with the Live Server extension or another local static server.
+
+## Deploy to Netlify
+1. Upload these files to the root of your GitHub repository, preserving the `js/` folder.
+2. Commit and push changes.
+3. In Netlify, set build command to blank and publish directory to `.`.
+4. Deploy. Later pushes to the connected production branch trigger a new deployment.
+
+## Add a lesson
+Edit `js/data.js` and add a lesson object inside the appropriate module's `lessons` array. Keep the fields consistent with the existing examples: `id`, `title`, `duration`, `level`, `intro`, `objectives`, `sections`, `example`, `takeaway`. Give every lesson a unique `id`.
+
+## Add a quiz question
+Edit `js/quizzes.js` and append an object to `questions`. Provide a unique `id`, `question`, four `options`, a zero-based `answer` index, and a helpful `explanation`.
+
+## Add a lab input
+Edit `js/labs.js` and add an input object with a unique `value`, `label`, `detail`, `process`, and `output`.
+
+## Current limitations
+- Progress uses browser `localStorage` on the same device/browser; it is not a shared student record.
+- Quiz scores are shown in the browser only and are not saved to a faculty dashboard.
+- There is no authentication, faculty upload tool, database, or live AI model connection.
+- The lab is a simulation and does not call an AI API.
+- This version has no build dependencies. Do not put API keys or private student data in front-end files.
+
